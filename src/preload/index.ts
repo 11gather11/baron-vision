@@ -20,3 +20,5 @@ if (process.contextIsolated) {
 	// @ts-expect-error (define in dts)
 	window.api = api
 }
+
+export type Api = typeof api

@@ -1,11 +1,21 @@
-import './assets/main.css'
+import '@/styles/global.css'
 
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
+import {
+	createHashHistory,
+	createRouter,
+	RouterProvider,
+} from '@tanstack/react-router'
+import React from 'react'
+import reactDom from 'react-dom/client'
 
-createRoot(document.getElementById('root')!).render(
-	<StrictMode>
-		<App />
-	</StrictMode>
+const hashHistory = createHashHistory()
+
+import { routeTree } from './routeTree.gen'
+
+const router = createRouter({ routeTree, history: hashHistory })
+
+reactDom.createRoot(document.getElementById('root') as HTMLElement).render(
+	<React.StrictMode>
+		<RouterProvider router={router} />
+	</React.StrictMode>
 )
